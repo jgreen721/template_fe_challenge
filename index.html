@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Four card feature section</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .app {
+        height: 100vh;
+        width: 100vw;
+        background: hsl(0, 0%, 98%);
+        padding: 2em;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        /* color: hsl(228, 45%, 44%);
+        color: hsl(180, 62%, 55%); */
+      }
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      .text-center {
+        text-align: center;
+        width: 60%;
+        margin: 0 auto;
+      }
+
+      .h1 {
+        font-weight: 200;
+      }
+
+      .h1-two {
+        color: rgb(53, 51, 51);
+        opacity: 85%;
+      }
+
+      .mt-5 {
+        margin-top: 25px;
+        font-weight: 100;
+      }
+
+      .card-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 5;
+        background: hsl(0, 0%, 98%);
+      }
+
+      .main-card {
+        width: 300px;
+        height: 250px;
+        margin: 10px;
+      }
+
+      @media screen and (max-width: 550px) {
+        .app {
+          height: 175vh;
+        }
+        .card-container {
+          display: block;
+          margin: 0 auto;
+        }
+
+        .main-card {
+          margin: 0 auto;
+          width: 100%;
+          margin: 15px 0px;
+        }
+
+        .text-center {
+          width: 90%;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        .text-center {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="text-center">
+        <h1 class="h1">Reliable, efficient delivery</h1>
+        <h1 class="h1-two">Powered by Technology</h1>
+        <h5 class="mt-5">
+          Our Artificial Intelligence powered tools use millions of project data
+          points to ensure that your project is successful
+        </h5>
+      </div>
+
+      <!-- lrg: flex-row/center  sm:block center -->
+      <div class="card-container">
+        <div class="column1">
+          <div class="main-card"></div>
+        </div>
+        <div class="column2">
+          <div class="main-card"></div>
+          <div class="main-card"></div>
+        </div>
+        <div class="column3">
+          <div class="main-card"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Your Name Here</a>.
+      </p>
+    </footer>
+
+    <script>
+      (async function main() {
+        let customCards = document.querySelectorAll(".main-card");
+        console.log(customCards);
+        console.log("mainfx fired");
+        let response = await fetch("./card_data.json");
+        let data = await response.json();
+        console.log("Data", data);
+
+        data.card_data.map((data, idx) => {
+          createCard(data, idx);
+        });
+
+        function createCard(data, idx) {
+          var template = document.createElement("template");
+          console.log(data.color);
+          template.innerHTML = `
+              <style>
+                .card{
+                  height:100%;
+                  width:100%;
+                  border-radius:10px;
+                  background:white;
+                  box-shadow:2px 4px 8px lightgray;
+                 }
+
+                 .card-${idx}{
+                  border-top:3px solid ${data.color};
+
+                 }
+
+                .header{
+                  padding:1em;
+                }
+
+                .img{
+                  position:relative;
+                  float:right;
+                  top:10%;
+                  margin-right:25px;
+                }
+                </style>
+                <div class="card card-${idx}">
+                  <div class='header'>
+                    <h2 class="title">${data.title}</h2>
+                    <p class="blurb">${data.blurb}</p>
+                  </div>
+                  <img src=${data.img} class="img"/>
+                </div>
+                `;
+
+          customCards[idx].append(template.content.cloneNode(true));
+
+          // class CustomCard extends HTMLElement {
+          //   constructor() {
+          //     super();
+          //     this.title = data.title;
+          //     this.blurb = data.blurb;
+          //     this.image = data.image;
+          //     this.color = data.color;
+          //     this.attachShadow({ mode: "open" });
+          //     this.shadowRoot.append(template.content.cloneNode(true));
+          //   }
+
+          //   connectedCallback() {
+          //     console.log("connectedCallback fired");
+          //     this.shadowRoot.querySelector(".title").innerHTML = this.title;
+          //     this.shadowRoot.querySelector(".blurb").innerHTML = this.blurb;
+          //     this.shadowRoot
+          //       .querySelector(".img")
+          //       .setAttribute("src", this.title);
+          //   }
+          // }
+
+          // customElements.define("custom-card", CustomCard);
+        }
+      })();
+    </script>
+  </body>
+</html>

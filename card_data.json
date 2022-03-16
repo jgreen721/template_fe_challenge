@@ -1,0 +1,39 @@
+{
+    "card_data":[
+        {
+            "id":1,
+            "color":"hsl(180, 62%, 55%)",
+            "title":"Supervisor",
+            "blurb":"Monitors activity to identify project roadblocks",
+            "img":"./images/icon-supervisor.svg",
+            "dcolor":"red"
+
+        },
+        {
+            "id":2,
+            "color":"hsl(0, 78%, 62%)",
+            "title":"Team Builder",
+            "blurb":"Scans our talent network to create the optimal team for your project",
+            "img":"./images/icon-team-builder.svg",
+            "dcolor":"red"
+        },
+        {
+            "id":3,
+            "color":"hsl(34, 97%, 64%)",
+            "title":"Karma",
+            "blurb":"Regularly evaluates our talent to ensure quality",
+            "img":"./images/icon-karma.svg",
+            "dcolor":"red"
+
+        },
+        {
+            "id":4,
+            "color":"hsl(212, 86%, 64%)",
+            "title":"Calculator",
+            "blurb":"Uses data from past projects to provide better delivery estimates",
+            "img":"./images/icon-calculator.svg",
+            "dcolor":"red"
+
+        }
+    ]
+}
